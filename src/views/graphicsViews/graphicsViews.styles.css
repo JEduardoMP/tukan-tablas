@@ -1,0 +1,36 @@
+.content-center {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.graphics-distribution {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn-return {
+  margin-top: 2rem;
+  background-color: #4E9F3D;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.6rem;
+  color: white;
+  font-weight: bold;
+}
+@media (min-width: 768px) {
+  .btn-return {
+    width: 90%;
+  }
+  .graphics-distribution {
+    margin-top: 1.4rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

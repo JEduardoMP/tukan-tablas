@@ -10,6 +10,9 @@ import DataContext from "../../context/dataContext";
 // Helpers
 import { GraphicsFetch } from "../../helpers/graphicsFetch";
 
+// Styles
+import './formsTokenSeries.styles.css'
+
 const FormTokenSeries = () => {
   const { state, dispatch } = useContext(DataContext);
   let navigate = useNavigate();
@@ -25,18 +28,18 @@ const FormTokenSeries = () => {
     navigate("/graphics", { state: info });
   };
   return (
-    <form onSubmit={(e) => getDataChart(e)}>
+    <form className='form-style' onSubmit={(e) => getDataChart(e)}>
       {state.error && state.error.mensaje ? <p>{state.error.mensaje}</p> : null}
-      <div>
+      <div className='inputs-style'>
         <label htmlFor="">Token</label>
-        <input type="text" required />
+        <input type="text" placeholder="Ingrece aquí su token" required />
       </div>
-      <div>
+      <div className='inputs-style'>
         <label htmlFor="">Serie</label>
         <input
           type="text"
           required
-          placeholder="Coloque las series que desea visualizar seperandolas por comas(,) y sin espacios"
+          placeholder="Deben ser separados por comas(,) y sin espacios"
         />
         <input type="submit" />
       </div>

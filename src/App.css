@@ -1,3 +1,14 @@
 * {
   box-sizing: border-box;
 }
+a {
+  text-decoration: none;
+  color: black;
+}
+body {
+  height: 100vh;
+  background: linear-gradient(to top, #191A19, #2C272E);
+}
+#root {
+  height: 100vh;
+}

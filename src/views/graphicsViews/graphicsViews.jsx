@@ -1,57 +1,54 @@
 // React hooks
-import { useContext, useRef } from "react";
+import { useContext, useState } from "react";
 
 // Context
 import DataContext from "../../context/dataContext";
 
-// React chart
-import { Line } from "react-chartjs-2";
-import { Chart as ChartJS, registerables } from "chart.js";
+// Components
+import Graphics from "../../components/Graphics/graphics";
+import { useNavigate } from "react-router-dom";
+
+// Styles
+import "./graphicsViews.styles.css";
 
 const GraphicsViews = () => {
+  // Almacenamos la ruta de descarga (href) y el nombre del documento (download)
+  const [imgState, setImgState] = useState({ href: "", download: "" });
+
   const { state } = useContext(DataContext);
 
-  const tableDiv = useRef();
+  const navigate = useNavigate();
 
-  ChartJS.register(...registerables);
-
-  const downloadChart = () => {
-    const canvas = tableDiv.current.children[0];
+  // En esta funcion se convertirá el canvas a base64 para posterirmente descargarlo
+  const downloadChart = (div) => {
+    const canvas = div.current.children[0];
     let base64 = canvas.toDataURL("image/png");
-    base64 = base64.replace("image/png", "image/octet-stream");
-    document.location.download = base64
-    // window.location.href = base64;
-    console.log(window.location);
+    // base64 = base64.replace("image/png", "image/octet-stream");
+    setImgState({ href: base64, download: "table.jpg" });
   };
 
-  return state.data.bmx.series.map((element) => (
-    <div
-      ref={tableDiv}
-      style={{ padding: "2rem", width: "50%", height: "40%" }}
-    >
-      <Line
-        data={{
-          labels: element.datos.map((label) => label.fecha),
-          datasets: [
-            {
-              label: `${element.idSerie} - ${element.titulo}`,
-              data: element.datos.map((data) => data.dato),
-              borderColor: ["rgba(255, 99, 132, 0.4)"],
-              borderWidth: 0.6,
-            },
-          ],
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true,
-              },
-            },
-          },
-        }}
-      />
-      <button onClick={() => downloadChart()}>Descargar tabla</button>
+  // Funcion que retorna el useNavigare para regresar a hacer una busqueda
+  const returnHome = () => {
+    return navigate("/");
+  };
+
+  return (
+    <div className="content-center">
+      <button className="btn-return" onClick={() => returnHome()}>
+        Realizar nueva busqueda
+      </button>
+      <div className="graphics-distribution">
+        {state.data.bmx.series.map((element, idx) => (
+          <Graphics
+            element={element}
+            downloadChart={downloadChart}
+            imgState={imgState}
+            key={idx}
+          />
+        ))}
+      </div>
     </div>
-  ));
+  );
 };
 
 export default GraphicsViews;

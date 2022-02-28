@@ -1,0 +1,32 @@
+.form-style {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  height: 50%;
+  border-radius: 0.9rem;
+}
+.inputs-style {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputs-style input {
+  padding: 1rem;
+  border: none;
+  border-radius: 1rem;
+}
+.inputs-style label {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+}
+input[type=submit] {
+  margin-top: 1.5rem;
+  background-color: #FFC300;
+}

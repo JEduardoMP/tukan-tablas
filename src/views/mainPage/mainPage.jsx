@@ -1,8 +1,12 @@
+// Components
 import FormTokenSeries from "../../components/Forms/formTokenSeries";
+
+// Styles
+import './mainPage.styles.css'
 
 const MainPage = () => {
   return (
-    <section>
+    <section className='main-center'>
       <FormTokenSeries />
     </section>
   );
